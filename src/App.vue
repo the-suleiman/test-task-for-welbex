@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <the-table
+      :data="data"
+  />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import theTable from "@/components/theTable";
+import {reactive} from "vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+  components: { theTable },
+  setup() {
+
+    const data = reactive([]);
+
+    for (let i = 1; i < 31; i++) {
+      data.push({
+        label: "TEST" + i,
+        amount: Math.round(50000 * Math.random()),
+        date: i+ '.07.2022',
+        distance: Math.round(10000 * Math.random()),
+      });
+    }
+
+
+    return {
+      data
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
